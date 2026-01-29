@@ -1,0 +1,44 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+venv/
+.env
+.env.*
+uv.lock
+
+# Node / frontend
+node_modules/
+package.json
+package-lock.json
+travel-planner-ui/
+
+# Notebooks & experiments
+notebook/
+*.ipynb
+
+venv
+node_modules
+__pycache__
+.git
+
+
+# Images & misc
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Build / logs
+logs/
+data/
+
+# OS junk
+.DS_Store
+Thumbs.db

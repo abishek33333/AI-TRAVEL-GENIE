@@ -1,0 +1,95 @@
+# langchain
+# langchain-community
+# langchain-experimental
+# fastapi
+# python-dotenv
+# streamlit
+# uvicorn
+# pydantic
+# httpx
+# requests
+# langchain_google_community
+# langchain_tavily
+# langchain_groq
+# langgraph
+# langchain-google-community[places]
+# langchain-openai
+# langchain-google-genai
+# langchain_anthropic
+
+# SerpAPI 
+# google-search-results
+# markdown2 
+# xhtml2pdf
+# reportlab
+# requests
+
+
+# # Optional but useful
+# python-dateutil
+# rich
+
+
+
+
+# # -------------------------------------------------------------------------------------
+# # Core Framework
+# # fastapi==0.115.5
+# # uvicorn[standard]==0.32.1
+# # pydantic==2.10.3
+# # python-dotenv==1.0.1
+
+# # # HTTP Requests
+# # requests==2.32.3
+
+# # # LangChain & LangGraph
+# # langchain==0.3.13
+# # langchain-core==0.3.28
+# # langchain-community==0.3.13
+# # langchain-groq==0.2.1
+# # langchain-openai==0.2.14
+# # langchain-anthropic==0.3.4
+# # langgraph==0.2.59
+
+# # # Search APIs
+# # google-search-results==2.4.2
+# # serpapi==0.1.5
+
+# # # Streamlit UI
+# # streamlit==1.41.1
+
+# # # PDF Generation
+# # reportlab==4.2.5
+
+# # # Utilities
+# # python-dateutil==2.9.0.post0
+
+# #  -e .
+
+langchain
+langchain-community
+langchain-experimental
+fastapi
+python-dotenv
+streamlit
+uvicorn
+pydantic
+httpx
+requests
+langchain_google_community
+langchain_tavily
+langchain_groq
+langgraph
+langchain-google-community[places]
+langchain-openai
+langchain-google-genai
+langchain_anthropic
+
+serpapi
+google-search-results
+markdown2
+xhtml2pdf
+reportlab
+
+python-dateutil
+rich

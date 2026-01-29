@@ -1,0 +1,20 @@
+Project Name: "AI Agentic Travel Planner"
+Employee Name: "Abishek Alaparthi"
+models_used:
+  # - deepseek-r1-distill-llama-70b
+  - meta-llama/llama-4-scout-17b-16e-instruct
+dat:
+  # - synthetic
+  - real-time-api
+tools:
+  - langchain
+  - langgraph
+  - serpapi
+  # - duckduckgo-search
+  - Tavily search
+evaluation:
+  - automated
+  - human
+compute:
+  platform: cloud
+  gpu: none

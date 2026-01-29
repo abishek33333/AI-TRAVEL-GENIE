@@ -1,0 +1,345 @@
+# ==========================================
+# AI Travel Planner - Git Ignore File
+# ==========================================
+
+# ==========================================
+# Python
+# ==========================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+venv/
+node_modules/
+.env
+.env.*
+
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# ==========================================
+# IDEs and Editors
+# ==========================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ==========================================
+# Operating System Files
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+.directory
+.Trash-*
+.nfs*
+
+# ==========================================
+# Project Specific
+# ==========================================
+# API Keys and Secrets (CRITICAL - Never commit!)
+*.env
+.env.*
+secrets.json
+config/secrets.yaml
+api_keys.txt
+
+# Logs and databases
+logs/
+*.log
+*.log.*
+*.sqlite
+*.db
+
+# Data files (uncomment if sensitive)
+data/raw/
+data/processed/
+# data/*.csv
+# data/*.json
+
+# Model files (large files)
+models/*.h5
+models/*.pkl
+models/*.pth
+*.model
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.cache
+
+# User-specific config
+config/local.yaml
+config/user_*.yaml
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Output files
+outputs/
+results/
+reports/*.pdf
+reports/*.docx
+
+# ==========================================
+# Docker
+# ==========================================
+# Docker volumes
+docker-volumes/
+.docker/
+
+# ==========================================
+# Cloud & Deployment
+# ==========================================
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Kubernetes
+*.kubeconfig
+
+# AWS
+.aws/
+
+# Google Cloud
+.gcloud/
+*-key.json
+
+# Azure
+.azure/
+
+# ==========================================
+# Miscellaneous
+# ==========================================
+# Compressed files
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Node (if using any JS tools)
+node_modules/
+package-lock.json
+yarn.lock
+
+# NPM
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================
+# AI Travel Planner Specific
+# ==========================================
+# SerpAPI cache (if implemented)
+serpapi_cache/
+
+# User uploads
+user_uploads/
+uploaded_files/
+
+# Generated itineraries
+itineraries/
+trip_plans/
+
+# Test data
+test_data/
+mock_responses/

@@ -1,0 +1,58 @@
+name: ablation_no_flight_agent
+description: Ablation study - System without FlightAgent (random flight selection)
+
+model:
+  provider: groq
+  name: meta-llama/llama-4-scout-17b-16e-instruct
+  temperature: 0.1
+  max_tokens: 8000
+  top_p: 0.85
+  seed: 42
+
+agents:
+  flight_agent:
+    enabled: false  # ABLATION: Disabled
+    fallback_strategy: random_selection
+  
+  hotel_agent:
+    enabled: true
+    optimization_criteria: rating_to_cost_ratio
+  
+  place_discovery:
+    enabled: true
+    primary_source: google_places
+    fallback_source: tavily
+
+tools:
+  - search_flights
+  - search_hotels
+  - get_weather_forecast
+  - search_attractions
+  - search_restaurants
+  - search_activities
+
+workflow:
+  max_tool_calls: 10
+  stop_conditions:
+    - tool_limit_reached
+    - itinerary_complete_detected
+
+test_case:
+  from_city: "Mumbai"
+  destination: "Goa"
+  start_date: "2026-03-15"
+  days: 3
+  travelers: 2
+  budget: "moderate"
+  vibe: "relaxation"
+
+hypothesis:
+  "Without FlightAgent scoring, recommendations will be suboptimal, 
+   leading to higher user cost or longer travel time compared to baseline."
+
+expected_impact:
+  - increased_price_deviation: true
+  - reduced_user_satisfaction: true
+  - no_impact_on_tool_efficiency: true
+
+comparison_baseline: exp_01_baseline.yaml

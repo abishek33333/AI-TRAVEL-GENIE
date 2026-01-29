@@ -1,0 +1,85 @@
+name: temperature_sweep
+description: Parameter sweep across different temperature values to measure creativity vs. factual accuracy trade-off
+
+model:
+  provider: groq
+  name: meta-llama/llama-4-scout-17b-16e-instruct
+  max_tokens: 8000
+  top_p: 0.85
+  seed: 42
+
+parameter_sweep:
+  variable: temperature
+  values: [0.0, 0.1, 0.3, 0.5]
+  
+  configurations:
+    - id: temp_0.0
+      temperature: 0.0
+      hypothesis: "Maximally deterministic, lowest hallucination risk"
+    
+    - id: temp_0.1
+      temperature: 0.1
+      hypothesis: "Balanced determinism with slight flexibility (baseline)"
+    
+    - id: temp_0.3
+      temperature: 0.3
+      hypothesis: "Moderate creativity, may introduce stylistic variation"
+    
+    - id: temp_0.5
+      temperature: 0.5
+      hypothesis: "Higher creativity, risk of fabricated details"
+
+agents:
+  flight_agent:
+    enabled: true
+  hotel_agent:
+    enabled: true
+  place_discovery:
+    enabled: true
+
+tools:
+  - search_flights
+  - search_hotels
+  - get_weather_forecast
+  - search_attractions
+  - search_restaurants
+  - search_activities
+
+workflow:
+  max_tool_calls: 10
+
+test_cases:
+  - id: tc_01
+    from_city: "Delhi"
+    destination: "Jaipur"
+    days: 2
+    travelers: 2
+    budget: "budget"
+    vibe: "culture"
+  
+  - id: tc_02
+    from_city: "Bangalore"
+    destination: "Coorg"
+    days: 3
+    travelers: 4
+    budget: "moderate"
+    vibe: "nature"
+
+evaluation_metrics:
+  primary:
+    - factual_accuracy  # % of verifiable place names
+    - hallucination_rate  # Count of fabricated details
+  
+  secondary:
+    - response_variety  # Lexical diversity across runs
+    - tool_call_consistency  # Variance in tool sequences
+
+expected_findings:
+  - "Temperature 0.0-0.1: Highest factual accuracy, low variety"
+  - "Temperature 0.3-0.5: Increased creativity, higher hallucination risk"
+  - "Optimal temperature for travel planning: 0.1-0.2"
+
+analysis:
+  statistical_test: ANOVA
+  significance_level: 0.05
+  replications_per_config: 5
