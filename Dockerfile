@@ -73,4 +73,5 @@ EXPOSE 7860
 
 # 6. Start ONLY Streamlit
 # Since app.py imports the logic from main.py, we don't need uvicorn running!
+# CMD ["streamlit", "run", "app.py", "--server.port=7860", "--server.address=0.0.0.0"]
 CMD ["streamlit", "run", "app.py", "--server.port=7860", "--server.address=0.0.0.0"]
