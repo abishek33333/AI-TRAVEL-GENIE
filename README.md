@@ -1,3 +1,16 @@
+---
+title: AI Travel Genie
+emoji: ✈️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 8501
+pinned: false
+license: mit
+---
+
+
+
 # AI Travel Planner - Multi-Agent LLM System
 
 **Employee Name:** <Your_Employee_ID>  
