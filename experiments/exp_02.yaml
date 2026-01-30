@@ -1,5 +1,7 @@
 name: temperature_sweep
 description: Parameter sweep across different temperature values to measure creativity vs. factual accuracy trade-off
+# This experiment does not change agents or tools.
+# It changes only one LLM parameter: temperature.
 
 model:
   provider: groq

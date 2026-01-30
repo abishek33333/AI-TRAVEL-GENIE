@@ -1,6 +1,7 @@
 name: ablation_no_flight_agent
 description: Ablation study - System without FlightAgent (random flight selection)
-
+# Ablation study = removing one component to measure its importance
+# “How bad does the trip planner become if we remove intelligent flight reasoning?”
 model:
   provider: groq
   name: meta-llama/llama-4-scout-17b-16e-instruct
@@ -32,7 +33,7 @@ tools:
   - search_activities
 
 workflow:
-  max_tool_calls: 10
+  max_tool_calls: 5
   stop_conditions:
     - tool_limit_reached
     - itinerary_complete_detected
