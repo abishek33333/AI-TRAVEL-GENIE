@@ -13,7 +13,7 @@ license: mit
 
 # AI Travel Planner - Multi-Agent LLM System
 
-**Employee Name:** <Your_Employee_ID>  
+**Employee Name:** Abishek Alaparthi
 **Project Type:** Solo Capstone Project - Generative AI / LLM Systems
 
 ---
