@@ -1,4 +1,3 @@
-
 import streamlit as st
 import asyncio
 import datetime
@@ -51,7 +50,7 @@ async def plan_trip_logic(req: TripRequest) -> dict:
     """
     try:
         # Initialize Graph
-        graph = GraphBuilder(model_provider="groq")()
+        graph = GraphBuilder(model_provider="openrouter")()
 
         # Handle Dates
         try:
@@ -67,7 +66,6 @@ async def plan_trip_logic(req: TripRequest) -> dict:
 
         # Build Prompt
         prompt = f"""TRIP PLANNING REQUEST
-
 📋 **TRIP PARAMETERS:**
 - Origin: {req.from_city}
 - Destination: {req.destination}
@@ -84,28 +82,22 @@ async def plan_trip_logic(req: TripRequest) -> dict:
         prompt += f"""
         
 🤖 **MULTI-AGENT EXECUTION PROTOCOL:**
-
 **STEP 1 - Flight Agent:**
 Execute: search_flights(origin="{req.from_city}", destination="{req.destination}", travel_date="{final_start_date}")
 → Filter by price, layovers, travel time
 → Display ALL flights in Budget/Moderate/Premium categories
-
 **STEP 2 - Hotel Agent:**
 Execute: search_hotels(location="{req.destination}", check_in_date="{final_start_date}", check_out_date="{checkout_date}")
 → Analyze by location, budget, amenities
 → Display ALL hotels in Budget/Moderate/Luxury categories
-
 **STEP 3 - Reasoning Agent (YOU):**
 → Compare flight/hotel alternatives and explain trade-offs
 → Recommend optimal choices based on {req.budget} budget and {req.vibe} vibe
-
 **STEP 4 - Dynamic Itinerary:**
 → Generate {req.days} days of activities using REAL attraction names
 → Include specific costs in ₹ INR
-
 **STEP 5 - Budget Breakdown:**
 → Calculate GRAND TOTAL in ₹ INR (Flights + Hotels + Food + Activities)
-
 Execute this multi-agent workflow now.
 """
 

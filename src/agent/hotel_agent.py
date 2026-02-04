@@ -1,4 +1,7 @@
+# This agent looks at a list of hotels and picks the best one by prioritizing higher rating and lower price
+
 class HotelAgent:
+    # this class job is compare , select, justify hotels
     """
     Evaluates hotel options and recommends best accommodation
     """
@@ -19,3 +22,4 @@ class HotelAgent:
                 "and affordability within the given budget."
             )
         }
+    # output : A dictionary containing:The selected hotel,A short explanation

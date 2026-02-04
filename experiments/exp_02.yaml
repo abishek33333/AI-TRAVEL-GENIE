@@ -1,3 +1,5 @@
+# this file tell s us What is the safest and most effective temperature for an AI Trip Planner?
+
 name: temperature_sweep
 description: Parameter sweep across different temperature values to measure creativity vs. factual accuracy trade-off
 # This experiment does not change agents or tools.
@@ -13,11 +15,14 @@ model:
 parameter_sweep:
   variable: temperature
   values: [0.0, 0.1, 0.3, 0.5]
-  
+  # Instead of running one experiment, you run many, changing only
+
   configurations:
     - id: temp_0.0
-      temperature: 0.0
+      temperature: 0.0   #Model always picks the highest-probability token
       hypothesis: "Maximally deterministic, lowest hallucination risk"
+      # Output is:very rigid repetitive extremely factual
+
     
     - id: temp_0.1
       temperature: 0.1
@@ -26,6 +31,7 @@ parameter_sweep:
     - id: temp_0.3
       temperature: 0.3
       hypothesis: "Moderate creativity, may introduce stylistic variation"
+      # Risk:Slightly incorrect opening hours ,Soft assumptions about activities
     
     - id: temp_0.5
       temperature: 0.5
@@ -38,6 +44,7 @@ agents:
     enabled: true
   place_discovery:
     enabled: true
+    # Any difference comes from LLM behavior, not system architecture.
 
 tools:
   - search_flights

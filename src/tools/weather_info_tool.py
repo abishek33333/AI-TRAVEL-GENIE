@@ -1,8 +1,14 @@
+# This tool fetches a real 5-day weather forecast for a city, optionally aligns it with the user’s travel date,
+#  and returns a clean,readable weather summary for an AI agent
+
 import os
-import requests
+import requests   
+# call weatherapi
 from datetime import datetime
 from collections import defaultdict
+# Group weather by date
 from typing import Optional
+# Travel date may or may not exist
 from langchain.tools import tool
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
@@ -13,6 +19,7 @@ load_dotenv()
 class WeatherInput(BaseModel):
     city: str = Field(description="City name to get weather for (e.g., 'London', 'Tokyo')")
     travel_date: Optional[str] = Field(default=None, description="Trip start date in YYYY-MM-DD format")
+    # City is required,Travel date is optional,Date must be a string (YYYY-MM-DD
 
 @tool(args_schema=WeatherInput)
 def get_weather_forecast(city: str, travel_date: Optional[str] = None) -> str:
@@ -26,10 +33,12 @@ def get_weather_forecast(city: str, travel_date: Optional[str] = None) -> str:
 
     # 5-day / 3-hour forecast endpoint
     url = f"http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&units=metric"
+    # This endpoint returns 5 days,Data comes in 3-hour intervals,Around 40 entries total
 
     try:
         print(f"\n🌦️ WEATHER API CALL: {city} for date: {travel_date}")
         response = requests.get(url, timeout=10)
+        # Timeout prevents the app from hanging forever.
         data = response.json()
 
         if response.status_code != 200:
@@ -43,6 +52,7 @@ def get_weather_forecast(city: str, travel_date: Optional[str] = None) -> str:
         print(f"   ✅ API Response: {len(data['list'])} forecast entries")
 
         # 1. Organize Raw Data by Date
+        
         daily_weather = defaultdict(lambda: {"temps": [], "conditions": []})
         
         for item in data.get('list', []):

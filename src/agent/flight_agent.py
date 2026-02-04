@@ -1,5 +1,8 @@
-from typing import List, Dict
+# This class looks at many flight options, scores each one using price,
+#  travel time, and layovers, then ranks them to recommend the best flight.
 
+from typing import List, Dict
+# this class compares, scores, recommends
 class FlightAgent:
     """
     Evaluates flight options and recommends the optimal one based on weighted criteria.
@@ -12,6 +15,7 @@ class FlightAgent:
     WEIGHT_LAYOVERS = 0.20
 
     def evaluate(self, flights: List[Dict]) -> List[Dict]:
+        # it returns best flights which hav best scored,ranked,best one
         """
         Filters, scores, and ranks a list of flight options.
         Returns the list sorted by best score (ascending).
@@ -29,10 +33,12 @@ class FlightAgent:
         # Avoid division by zero
         price_range = max_price - min_price if max_price > min_price else 1
         duration_range = max_duration - min_duration if max_duration > min_duration else 1
+        # Normalization converts everything into 0.0 → 1.0 scale
 
         scored_flights = []
         
         for f in flights:
+            # Each flight is evaluated one by one.
             # 2. Normalize Metrics (0.0 = Best, 1.0 = Worst)
             norm_price = (f["price"] - min_price) / price_range
             norm_duration = (f["duration_minutes"] - min_duration) / duration_range
@@ -53,6 +59,7 @@ class FlightAgent:
 
         # 4. Sort by Score (Ascending)
         ranked_flights = sorted(scored_flights, key=lambda x: x["score"])
+        # Lowest score → top of list,Best flight always comes first.
 
         # 5. Tag the best option
         if ranked_flights:

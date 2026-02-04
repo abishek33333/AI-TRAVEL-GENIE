@@ -1,4 +1,6 @@
-
+# hotel_serpapi_tool.py searches Google Hotels via SerpAPI, filters good hotels (4⭐+), 
+# converts prices to INR, groups them into Budget / Moderate / Luxury, and returns compact JSON for 
+# an AI agent to reason on
 import os
 import json
 import serpapi
@@ -24,6 +26,9 @@ def search_hotels(location: str, check_in_date: str, check_out_date: str) -> str
         return json.dumps({"error": "Missing SERPAPI_API_KEY"})
 
     # --- 1. Date Validation ---
+    # This block handles bad or past dates:
+    # User gives past date ❌Check-out before check-in ❌Wrong format
+    # Moves check-in to tomorrow,Sets stay to minimum 1 night,Prevents Google Hotels errors
     try:
         checkin = datetime.strptime(check_in_date, "%Y-%m-%d")
         checkout = datetime.strptime(check_out_date, "%Y-%m-%d")
@@ -44,6 +49,7 @@ def search_hotels(location: str, check_in_date: str, check_out_date: str) -> str
         check_out_date = checkout.strftime("%Y-%m-%d")
         nights = 1
 
+# talking to google hotels
     params = {
         "engine": "google_hotels",
         "q": f"hotels in {location}",
@@ -61,6 +67,7 @@ def search_hotels(location: str, check_in_date: str, check_out_date: str) -> str
         print(f"\n🏨 HOTEL SEARCH: {location} ({nights} nights)")
         search = serpapi.GoogleSearch(params)
         results = search.get_dict()
+        # Now you receive raw Google hotel data,This data is huge, noisy, and messy.
         
         if "error" in results:
             return json.dumps({"error": results["error"]})
@@ -72,6 +79,7 @@ def search_hotels(location: str, check_in_date: str, check_out_date: str) -> str
 
         processed = []
         seen_names = set()
+        
         
         # --- 2. Process More Items (Top 100) to fill quotas ---
         for hotel in properties[:50]: 

@@ -4,6 +4,7 @@ from typing import List
 from langchain.tools import tool
 from dotenv import load_dotenv
 
+# it onlt set up tools ,configure apis, exposes them to agents
 class PlaceSearchTool:
     def __init__(self):
         load_dotenv()

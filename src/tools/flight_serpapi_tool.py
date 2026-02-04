@@ -19,6 +19,8 @@ load_dotenv()
 # Initialize Groq LLM (Ensure GROQ_API_KEY is in your environment variables)
 llm = ChatGroq(model="meta-llama/llama-4-scout-17b-16e-instruct", temperature=0)
 
+# This part uses a Llama-4 model as a specialized translator.
+# It follows strict rules: only 3 letters, uppercase, and prefers primary airports (e.g., Paris → CDG).
 def get_iata_code_from_llm(location_name: str) -> str:
     """
     Uses Groq LLM to convert a city/airport name into an IATA code 
@@ -86,6 +88,9 @@ def _fmt_time(iso_str):
     except:
         return iso_str
 
+# It uses SerpAPI, which scrapes Google Flights data legally.
+# It sets parameters like currency: INR and gl: in
+# It handles both One-Way and Round-Trip logic by checking if a return_date exists.
 def _execute_search(origin_code, dest_code, date_str, ret_date_str=None):
     """Execute SerpAPI flight search with resolved IATA codes"""
     api_key = os.getenv("SERPAPI_API_KEY")
@@ -128,6 +133,10 @@ def _execute_search(origin_code, dest_code, date_str, ret_date_str=None):
         print(f"   ❌ Exception: {str(e)}")
         return {"error": str(e)}
 
+# Raw API data is usually a giant, confusing JSON "blob." This section makes it human-readable
+# It loops through "legs" of a flight to create a clear path (e.g., VGA → BOM → HYD).
+# Converts military time or ISO strings into friendly formats like 02:30 PM.
+# It ensures you don't see the same flight twice if it's listed under different categories.
 def _process_results(results):
     """
     Process flight results with full route logic.
@@ -223,7 +232,8 @@ def _process_results(results):
 # ==========================================
 # 3. TOOL DEFINITION
 # ==========================================
-
+# Once it has a list of flights, it sorts them by Price → Duration → Layovers. 
+# It then splits them into three buckets budget,moderate,premium
 @tool(args_schema=FlightSearchInput)
 def search_flights(origin: str, destination: str, travel_date: str, return_date: Optional[str] = None) -> str:
     """
