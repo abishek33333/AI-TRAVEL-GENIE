@@ -1,6 +1,6 @@
 # AI Travel Planner - Multi-Agent System
 
-**Project by:** [Your Name]  
+**Project by:** Abishek Alaparthi 
 **Version:** 2.0  
 **Last Updated:** February 2026
 
